@@ -1,0 +1,20 @@
+services:
+  mssql:
+    container_name: mssql-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "F!iB6#dO6O7KJK8"  # Must meet SQL Server password complexity
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssqldata:/var/opt/mssql
+
+  adminer:
+    container_name: mssql-adminer
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
